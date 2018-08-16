@@ -1,0 +1,43 @@
+<!-- html : hyper text markup language-->  
+<html>
+    <head>
+        <title>
+            {{ name }}
+        </title>
+        <!-- html 문서의 메타 정보(문서를 기술하는 정보)를 표현하는 위치 -->
+    </head>
+    <body>
+        <img src='/static/img/logo.png' height='300px'/>
+            <h2>
+                    {{ name }}
+            </h2>
+        <!-- 눈에 보이는 모든 부분이 body에 있다-->
+        <!--사용자로부터 아이디와 비번을 입력받기
+            로그인 버튼을 누르면 로그인 처리하는 페이지로 
+            아이디와 비번을 가지고 요청한다 
+            -> 해당 페이지는 아이디 비번 가지고 DB에 쿼리
+            -> 쿼리 결과 회원이면 정상처리(서비스 이동)
+            -> 회원 아니면 메세지 처리(가입,재로그인 유도)
+        -->
+        <a href='/login?uid=test&upw=1234'>페이지이동 링크</a>
+        <fieldset>
+            <!-- 데이터를 전송한다 form태그 담당 -->
+            <form action = '/login' method="POST">
+                <!-- name 속성은 데이터하나의 키를 의미한다 ex. uid= ~~~  -->
+                <input type='text' name= 'uid' placeholder="아이디를 입력" autofocus required/> 
+                <br/>                  <!--    단독태그하려면 < ~~ /> 이렇게 쓴다    -->
+                <input type='password' name = 'upw' placeholder="비밀번호 입력" required/>
+                <br/>
+                <!-- <button>로그인</로그인> 이렇게 해도 됨 !-->
+                <!-- <button>로그인</로그인> -->
+                <input type='submit' value = '로그인' />
+            </form>
+        </fieldset>
+    </body>
+</html>
+
+
+
+
+<!--    <!DOCTYPE html> 이라고 써있으면 브라우져는 이 문서가 html5규격을 따르는 문서라고 인식한다
+        m.naver.com 페이지 소스보기 하면 나온다 !   -->

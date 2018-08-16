@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>{{title}}</title>
+    <!-- Line6 : jQuery 설치 완료 (javascript보다 편하다) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        // 문서(html)가 모두 메모리에 로드 되었다 >> 브라우저가 화면에 결과물을 보이게 하는 시점 >> 화면에 보이기 직전
+        $(document).ready(function(){      // jQuery 문법 중 요소를 찾는 문법
+            // 문서가 준비되면 함수를 인자로 보낼테니 호출해 달라 >> 호출되면 그 시점을 나는 문서를 조작할수있는 타이밍으로 보겠다
+        alert('문서 조작 시작');
+        $('#joinForm').on('submit',function(e){
+            e.preventDefault();
+            // ajax
+            $.post({
+
+            });
+            return false;
+        })
+        }); 
+    </script>
+</head>
+<body>
+  <fieldset>
+      <form id='joinForm'>
+         <input type='text' name='uid' placeholder="아이디" required/>
+         <br/>
+         <input type='password' name='uid' placeholder="비밀번호" required/>
+         <br/>
+         <input type='text' name='uid' placeholder="이름" required/>
+         <br/>
+         <input type='submit' value='가입'/>
+      </form>
+  </fieldset>
+  <script>
+        // form 태그의 전송요청을 인터셉트 하겠다
+        // var obj = document.querySelector('#joinForm')
+        // console.log(obj);             jQuery때문에 불 필요해 진 코드청크
+    </script>
+</body>
+</html>

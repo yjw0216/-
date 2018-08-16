@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    {# include "삽입할페이지" or ["","",..] 페이지가 없어도 오류를 
+       발생시키지 않으려면,  ignore missing 표시 #}
+    {% include ["common/head.html", "b.html", "c.html"] ignore missing %}
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        {% include "common/navi.html" %}
+        {% include "sub/index_sub.html" %}
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    {% include "common/foot.html" %}
+</body>
+</html>

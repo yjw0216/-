@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    {# include "삽입할페이지" or ["","",..] 페이지가 없어도 오류를 
+       발생시키지 않으려면,  ignore missing 표시 #}
+    {% include ["common/head.html", "b.html", "c.html"] ignore missing %}
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        {% include "common/navi.html" %}
+        {% include "sub/eplList_sub.html" %}
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    {% include "common/foot.html" %}
+    <script>
+        // input 태그를 찾아서 엔터 이벤트를 붙인다 -> search() 호출
+        // 자바스크립트에서 특정 요소에게 이벤트를 
+        // 붙이는 방법 .on('이벤트명', 콜백함수); 정의/등록
+        $('#searchKeyword').on('keypress', function(evt){
+            console.log( evt.keyCode );
+            // 엔터치면 search() 호출
+            if(evt.keyCode === 13){
+                search();
+            } 
+        });
+        function search(){
+            //console.log('hi');
+            // 입력 내용을 획득
+            var inputValue = $('#searchKeyword').val();
+            console.log(inputValue);
+            // b 태그 내부에 덮어쓴다(지우고 추가한다)
+            $('b').empty();             // b 태그의 자식을 지운다
+            $('b').append(inputValue);  // b 태그의 자식으로 추가한다
+            searchNet(inputValue);
+            $('#searchKeyword').val('');// 입력창 비우기
+        }
+        function searchNet(inputValue)
+        {
+            // POST 통신 -> ajax 기술 이용 -> 현재 화면은 그대로 존재 -> 뒤에서 통신
+            // data:'keyword=검색어' ex) 'keyword=검색어&name=xxx&age=10...'
+            // 통신이 성공하면 json 객체를 생성하고 이 결과를 success에 연결됨 함수를
+            // 호출하면서 인자로 전달함(resData)
+            $.post({
+                url:'/search',
+                data:'keyword='+inputValue,
+                dataType:'json',
+                success:function(resData){
+                    // 검색 결과를 화면에 표시하기 위해 함수 호출
+                    searchResultShow(resData);
+                    //console.log( '성공', resData );
+                    // 임시 검색 결과 표현
+                    //$('b').append( "<span style='color:red;'>->"+resData.name+"</span>" );
+                },
+                error:function(err){
+                    console.log( '실패', err );
+                }
+            });
+        }
+        function searchResultShow( data )
+        {
+            // data가 들어오면 데이터를 획득하여 html 화면에 동적으로 표현
+            // $.each(배열,콜백함수);는 배열(리스트) 데이터를 반복적으로 처리할때 사용
+            // idx: 데이터 인덱스값, item:데이터 하나 하나
+            $('#resultShowBase').empty();
+            $.each(data, (idx, item)=>{
+                //console.log( idx, item );
+                console.log( item.rank, item.name );
+                //var html = `<div>순위 ${item.rank} : ${item.name}</div>`;
+                var html = `<tr>
+                    <td>${item.rank}</td>
+                    <td>${item.name}</td>
+                </tr>`
+                $('#resultShowBase').append( html );
+                // 방금 추가된 div
+                $('#resultShowBase>div:last').on('click', ()=>{
+                    //alert(item.name);
+                    // ~/info/맨체스터..
+                    document.location.href='/info/'+item.name
+                });
+            });
+            // 데코레이션 css 적용
+            // 의사 결정 셀렉터 => 대상군:odd or ever eq(), lt(), gt(), first, last
+            $('#resultShowBase>div:odd').css('background-color','lightgreen');
+            // 막내만 그레이로 배경색
+            $('#resultShowBase>div:last').css('background-color','gray');
+        }
+        
+    </script>
+</body>
+</html>

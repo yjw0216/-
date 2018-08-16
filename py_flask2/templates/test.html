@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<!-- 1234라는 텍스트를 5678로 변경하시오 : 화면에 보인 이후에 -->
+<div>1234</div>
+<script>
+    // DOM(Document Object Model)조작
+    // div를 찾아서 자식의 값을 바꾸고 싶다.
+    $('div').empty() ; // 자식의 값을 비움 >> 1234가 삭제됨
+    $('div').append('5678');
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE=html>
+<html>
+<head>
+    <title>{{ team.name }}</title>   <!-- 타이틀은 변수로 해야함-->
+    <style>
+        td{
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+<body>
+    <caption>"{{ team.name }}"의 세부정보</caption>
+    <button onclick= 'history.back();'>검색이동</button>
+    <a href='/info/{{team.name}}?q=update'>수정</a>
+    <form action='/updateTeam' method='POST'> <!-- action은 어디로 보낼 것인가 method는 방법 -->
+        {% if flag :%}
+        <input type='submit' value = '팀 정보 수정' />
+        {% endif%}
+        <table border='1' cellspacing='0' width='80%' style='margin:10px;'>
+            <thead>
+                <tr>
+                    <th width = '30%'>제목</th>
+                    <th>내용</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key in team : %}
+                <tr>
+                    <td>{{ key }}</td>
+                    {% if flag :%}            <!-- flag가 있다면 문자열이 있다는 것이고 즉 참이다 결국 수정을 하겠다 !! -->
+                        <td><!-- input의 name 속성은 ㅐ당 데이터의 키에 해당함 ++ (위)현재 키가 name 이 아닌 경우 ! 조건을 2개 걸어 준 것 -->
+                        {% if key != 'name': %}
+                            <input value='{{ team[key] }}' name='{{ key }}'/>
+                        {% else : %}
+                            <!-- 수정 못하게 readonly 속성을 부여 ! -->
+                            <input value = '{{team[key]}}' name='{{key}}' readonly />
+                        {% endif%}
+                        </td>
+                    {% else: %}
+                        <td>{{team[key]}}</td>
+                    {% endif%}
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+    </form>
+</body> 
+</html>

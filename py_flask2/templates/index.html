@@ -1,0 +1,34 @@
+<!-- 현재 버전 : html5 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- head에 나오는 주 데이터는 메타데이터 : 주로 문서(document,HTML파일) -->
+    <title>{{ title }}</title>
+    <!-- MarkUp언어(= ~~ml인 언어//xml,html 등등)는 엘리먼트로 구성된다
+        엘리먼트는 시작태그(속성을 가질 수 있음) + 콘텐츠 + 종료태그로 구성된다
+        <script> content </script> 로 이해 해보기 -->
+    
+        {# javascript : 클라이언트에서 역할은 이벤트 처리 담당이다 
+                        사용자와 상호작용 담당( 사용자가 클릭하면 뭘할지 javascript가 처리함)
+                        또한 화면을 동적으로 변경해줄수있음(DHTML) >> 문서조작 
+                        But. javascript는 html이 없으면 아무런 의미가 없다  
+        #}
+    <!-- external js -->
+    <script src='/static/js/main.js'></script>
+    <!-- internal js -->
+    <script> 
+        console.log('1');   // javsscript에선 print가 console.log임 
+        function call(){    // js에서 함수 정의하기
+            //console.log('2');
+            document.location.href='/join'; // 현재 문서의 위치를 /join으로 이동 >> 페이지를 변경
+        }
+    </script>
+</head>
+<body>
+    <!-- inline js-->
+    <button onclick="call();">호출</button>
+    <script>
+        console.log('4');
+    </script>
+</body>
+</html>

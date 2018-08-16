@@ -1,0 +1,11 @@
+<div class="navbar-header">
+        <!-- 모바일 화면에서 사이드 메뉴 : 토글 // on&off의 기능 ! -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ url_for('userbp.home') }}">{{ '%s %s ' % (config.site_name , config.version) }}</a>
+        <!-- 사이트 제목 표시 및 홈페이지 이동하는 링크 제공 -->
+    </div>

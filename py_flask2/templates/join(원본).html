@@ -1,0 +1,65 @@
+<!-- 현재 버전 : html5 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <style>
+        /* css 의 주석표시임 
+           css 의 결론 : 요소를 찾아라 (css selector)
+                         >> 스타일을 적용해라
+        */
+        h2{                                    /*문서내 특정 모든 요소를 찾고 싶으면 >> 요소명(시작태그명)  */
+            color:red;
+        }
+        /* 문서내에 특정 id를 찾는 방법 >> # 뒤에 id 명 */
+        #k {
+            color:lightseagreen;
+        }
+        /* 문서내에서 공통되게 스타일을 주고 싶으면 class를 활용
+           >> class를 찾는 방법 >> .클래스명  */
+        .t1{
+            background-color : aquamarine;
+        }
+        /* 섞어써보기 >> h2 요소들 중에 class가 t1인 요소 */
+        h2.t1{
+            color:coral;
+        }    
+        /* 부모,자식관계로 찾기 / 열거형으로 찾기 / 속성으로 찾기 / 의사결정(:)으로 찾기   */
+        div>p{
+            color:blueviolet; /* line50 의 p는 따로 선택할수 없어 div(부모)밑에 p로 찾은것임 // 문법은 부모>자식{ } */
+        }   
+        div span{                    /* 직계자식이 아닌 부모 밑에 누군가를 표현하려면 부모 후손 의 문법으로 쓴다 (띄어쓰기!) ex. div span*/
+            color:brown;
+        }
+        /* 열거형 >> 밑에 처럼 그냥 나열 하면 된다. */
+        a,p,span{
+            background-color: chartreuse;
+        }
+        /* 속성으로 찾기 >> uid를 입력받는 요소의 배경색을 aquamarine으로 해라 */
+        input[name=uid] {
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <input type='text' name='uid'/>
+    <input type='text' name='upw'/>
+    <!-- div : 영역을 잡을때 주로 사용됨-->
+    <div>1
+        <a href='/'>링크</a>
+        <p>텍스트를 담는 태그</p>
+        <div>
+            <span>텍스트를 담는 태그1</span>
+            <span>텍스트를 담는 태그2</span>
+        </div>
+    </div>
+    <p>텍스트2</p>
+    <!-- 현재 문서에서 등장하는 모든 h2의 글자색을 빨강색으로  >> Line 11 -->
+    <h2 class =  't1'>하위</h2>
+    <h3>하위</h3>
+    <!-- html 문서 내에서 특정 엘리먼트에게 일종의 이름을 부여하고 싶으면 
+         id='' 의 문법으로 부여하면 된다. 단, 문서 내에서는 고유해야 한다 ! -->
+    <h2 id='k' >바잉</h2>
+    <h3 class='t1'>하위</h3>
+</body>
+</html>
